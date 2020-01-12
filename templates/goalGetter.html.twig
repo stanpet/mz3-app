@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('index') }}">Home
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('alleSaisonSpiele') }}">Alle Sesonspiele</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path('listGoalGetter') }}">Torschützerliste</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mt-4 mb-4">Bundesliga Tabelle</h1>
+                <p>Goal Getters</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">GoalGetterName</th>
+                            <th scope="col">Goals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% set foo = 0  %}
+                    {% for contents in content %}
+                        <tr>
+                            {% if name in contents.GoalGetterName|replace({' ': ''}) %}
+                                <td scope="row" class="align-middle">
+                                    {{ contents.GoalGetterName }}
+                                </td>
+                                <td class="align-middle">
+                                    {% set foo = foo + contents.GoalCount  %}
+
+                                    {{ contents.GoalCount }}
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    <hr>
+                    <tr>
+                        <td class="font-weight-bold">
+                            Goals
+                        </td>
+                        <td class="align-middle font-weight-bold">
+                            {{ foo }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            <hr>
+        </div>
+{% endblock %}
+

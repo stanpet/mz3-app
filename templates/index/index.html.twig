@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('alleSaisonSpiele') }}">Alle Sesonspiele</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('listGoalGetter') }}">Torschützerliste</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="mt-4 mb-4">Bundesliga Tabelle</h1>
+                    <p>bevorstehende Spiele</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Heimteam</th>
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Auswärtsteam</th>
+                                    <th scope="col">Datum</th>
+                                    <th scope="col">Uhr</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for contents in content %}
+                                <tr>
+                                    <th scope="row" class="align-middle">
+                                        <img src="{{ contents.Team1.TeamIconUrl }}" style="width: 50px"/>
+                                    </th>
+                                    <td class="align-middle">
+                                        {{ contents.Team1.TeamName }}
+                                    </td>
+                                    <th scope="row" class="align-middle">
+                                        <img src="{{ contents.Team2.TeamIconUrl }}" style="width: 50px"/>
+                                    </th>
+                                    <td class="align-middle">
+                                        {{ contents.Team2.TeamName }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ contents.MatchDateTime|date('d.m.Y') }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ contents.MatchDateTime|date('H:i') }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+{% endblock %}
