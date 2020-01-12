@@ -6,7 +6,7 @@ Bundesliga scores and results.
 
 - git clone https://github.com/stanpet/mz3-app - clone the project
 - composer install - install all dependencies
-- php bin/console server:run - start the built-in Symfony web server
+- php bin/console server:run - start the built-in Symfony web server from the project directory in the terminal
 
 # Built With
 
